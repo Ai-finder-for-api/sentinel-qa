@@ -586,8 +586,22 @@ class SentinelApp(tk.Tk):
         self.status_var.set(f"Report written to {chosen}")
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    """Launch the GUI; optionally load a suite file given as first argument."""
+    import sys
+    argv = sys.argv[1:] if argv is None else argv
     app = SentinelApp()
+    if argv:
+        try:
+            name, cases = load_suite(argv[0])
+        except (ValueError, OSError) as exc:
+            print(f"sentinel-qa: could not load {argv[0]}: {exc}", file=sys.stderr)
+        else:
+            app.cases = cases
+            app.suite_name.set(name)
+            from pathlib import Path as _P
+            app.suite_path = _P(argv[0])
+            app._refresh_tree(select_id=cases[0].id if cases else None)
     app.mainloop()
 
 

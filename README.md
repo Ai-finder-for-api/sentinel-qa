@@ -37,6 +37,8 @@ a bug ticket or release note.
 
 ```bash
 python -m sentinel_qa.app
+# or open a suite directly:
+python -m sentinel_qa.app examples/httpbin_smoke_suite.json
 ```
 
 No installation needed beyond Python 3.10+ — the GUI is tkinter (ships with
