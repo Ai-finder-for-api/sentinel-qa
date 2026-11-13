@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Sentinel QA report — httpbin smoke suite</title>
+<style>
+ body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:#0f1420;color:#e6e9f2;margin:0;padding:32px;}
+ h1{font-size:22px;margin:0 0 4px} .meta{color:#8a93a8;font-size:13px;margin-bottom:24px}
+ .cards{display:flex;gap:12px;margin-bottom:24px}
+ .card{background:#1a2132;border:1px solid #2a3348;border-radius:10px;
+       padding:14px 22px;min-width:110px}
+ .card b{display:block;font-size:26px} .pass{color:#3fd68f}
+ .fail{color:#ff6b6b} .err{color:#ffb454} .muted{color:#8a93a8}
+ table{width:100%;border-collapse:collapse;background:#1a2132;
+       border:1px solid #2a3348;border-radius:10px;overflow:hidden}
+ th,td{padding:10px 14px;text-align:left;font-size:13.5px;
+        border-bottom:1px solid #2a3348;vertical-align:top}
+ th{background:#222a3d;color:#9fb0d0;text-transform:uppercase;
+    font-size:11px;letter-spacing:.06em}
+ tr:last-child td{border-bottom:none}
+ .badge{padding:2px 10px;border-radius:20px;font-size:11.5px;font-weight:600}
+ .b-pass{background:#123c2c;color:#3fd68f} .b-fail{background:#452022;color:#ff6b6b}
+ .b-err{background:#453620;color:#ffb454}
+ code{background:#0b0f18;padding:1px 6px;border-radius:5px;font-size:12.5px}
+ .sub{color:#8a93a8;font-size:12px}
+</style></head><body>
+<h1>Sentinel QA — Test Report</h1>
+<div class="meta">Suite <b>httpbin smoke suite</b> &middot; generated 2026-11-13 06:58:06 &middot; sentinel-qa 1.0.0</div>
+<div class="cards">
+ <div class="card"><b>4</b><span class="muted">total</span></div>
+ <div class="card"><b class="pass">4</b><span class="muted">passed</span></div>
+ <div class="card"><b class="fail">0</b><span class="muted">failed</span></div>
+ <div class="card"><b class="err">0</b><span class="muted">errors</span></div>
+ <div class="card"><b>63 ms</b><span class="muted">total latency</span></div>
+</div>
+<table><thead><tr><th>Verdict</th><th>Test</th><th>Request</th>
+<th>Status</th><th>Latency</th><th>Assertions</th></tr></thead><tbody>
+<tr><td><span class='badge b-pass'>PASS</span></td><td>GET /get echoes query args</td><td><code>GET</code> <span class='sub'>https://httpbin.org/get?env=staging&amp;suite=smoke</span></td><td>200</td><td>26 ms</td><td>&#10003; <span class='sub'>status equals: 200</span><br>&#10003; <span class='sub'>json path equals: args.env -&gt; staging</span><br>&#10003; <span class='sub'>header equals: Content-Type -&gt; application/json</span><br>&#10003; <span class='sub'>latency under ms: 4000</span></td></tr>
+<tr><td><span class='badge b-pass'>PASS</span></td><td>POST /post accepts JSON body</td><td><code>POST</code> <span class='sub'>https://httpbin.org/post</span></td><td>200</td><td>12 ms</td><td>&#10003; <span class='sub'>status equals: 200</span><br>&#10003; <span class='sub'>json path equals: json.login -&gt; qa-bot</span><br>&#10003; <span class='sub'>json path exists: headers.Content-Type</span></td></tr>
+<tr><td><span class='badge b-pass'>PASS</span></td><td>GET /status/404 returns 404</td><td><code>GET</code> <span class='sub'>https://httpbin.org/status/404</span></td><td>404</td><td>11 ms</td><td>&#10003; <span class='sub'>status in: 404</span></td></tr>
+<tr><td><span class='badge b-pass'>PASS</span></td><td>GET /uuid is a valid UUID shape</td><td><code>GET</code> <span class='sub'>https://httpbin.org/uuid</span></td><td>200</td><td>14 ms</td><td>&#10003; <span class='sub'>status equals: 200</span><br>&#10003; <span class='sub'>json path exists: uuid</span><br>&#10003; <span class='sub'>body not contains: error</span></td></tr>
+</tbody></table></body></html>
