@@ -1,6 +1,6 @@
 # ◉ Sentinel QA — Desktop API Test Harness
 
-A genuinely useful, zero-dependency GUI tool for QA engineers and developers to
+A useful, zero-dependency GUI tool for QA engineers and developers to
 **build, run and report on HTTP API test suites** — a lightweight, scriptable
 cross between Postman and a CI smoke-test runner.
 
