@@ -1,0 +1,120 @@
+{
+  "format": "sentinel-qa-suite",
+  "version": "1.0.0",
+  "name": "httpbin smoke suite",
+  "saved_at": "2026-11-13T06:51:50",
+  "cases": [
+    {
+      "name": "GET /get echoes query args",
+      "method": "GET",
+      "url": "https://httpbin.org/get?env=staging&suite=smoke",
+      "headers": {},
+      "body": "",
+      "timeout_s": 10.0,
+      "assertions": [
+        {
+          "kind": "status_equals",
+          "target": "",
+          "expected": "200",
+          "id": "6acbb94a31"
+        },
+        {
+          "kind": "json_path_equals",
+          "target": "args.env",
+          "expected": "staging",
+          "id": "1831b57786"
+        },
+        {
+          "kind": "header_equals",
+          "target": "Content-Type",
+          "expected": "application/json",
+          "id": "be7b300585"
+        },
+        {
+          "kind": "latency_under_ms",
+          "target": "",
+          "expected": "4000",
+          "id": "13d8ede22f"
+        }
+      ],
+      "id": "bd9504de8f"
+    },
+    {
+      "name": "POST /post accepts JSON body",
+      "method": "POST",
+      "url": "https://httpbin.org/post",
+      "headers": {
+        "X-Suite": "smoke"
+      },
+      "body": "{\n  \"login\": \"qa-bot\",\n  \"remember\": true\n}",
+      "timeout_s": 10.0,
+      "assertions": [
+        {
+          "kind": "status_equals",
+          "target": "",
+          "expected": "200",
+          "id": "b90f110726"
+        },
+        {
+          "kind": "json_path_equals",
+          "target": "json.login",
+          "expected": "qa-bot",
+          "id": "158202b301"
+        },
+        {
+          "kind": "json_path_exists",
+          "target": "headers.Content-Type",
+          "expected": "",
+          "id": "dc4a19f03d"
+        }
+      ],
+      "id": "b2c4cd3e40"
+    },
+    {
+      "name": "GET /status/404 returns 404",
+      "method": "GET",
+      "url": "https://httpbin.org/status/404",
+      "headers": {},
+      "body": "",
+      "timeout_s": 10.0,
+      "assertions": [
+        {
+          "kind": "status_in",
+          "target": "",
+          "expected": "404",
+          "id": "6584512fbb"
+        }
+      ],
+      "id": "2fbfda9ed8"
+    },
+    {
+      "name": "GET /uuid is a valid UUID shape",
+      "method": "GET",
+      "url": "https://httpbin.org/uuid",
+      "headers": {},
+      "body": "",
+      "timeout_s": 10.0,
+      "assertions": [
+        {
+          "kind": "status_equals",
+          "target": "",
+          "expected": "200",
+          "id": "38039bc5f4"
+        },
+        {
+          "kind": "json_path_exists",
+          "target": "uuid",
+          "expected": "",
+          "id": "4045b2bb53"
+        },
+        {
+          "kind": "body_not_contains",
+          "target": "",
+          "expected": "error",
+          "id": "5da61540ad"
+        }
+      ],
+      "id": "1f291a3841"
+    }
+  ]
+}
